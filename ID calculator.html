@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ID Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0b66f7;
+      text-align: center;
+    }
+
+    #calculator {
+      max-width: 400px;
+      margin: 50px auto;
+      background-color: #0c08f9;
+      background-image: url(../Tumelo/OIP\ ID.jfif);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgb(68, 5, 243);
+    }
+
+    input, button {
+      margin: 10px;
+      padding: 8px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <h2>ID Calculator</h2>
+    <label for="idNumber">Enter ID Number:</label>
+    <input type="text" id="idNumber" placeholder="YYMMDDXXXXXX">
+    <button onclick="calculate()">Calculate</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      // Get the ID number from the input
+      const idNumber = document.getElementById('idNumber').value;
+
+      // Extract year, month, and day
+      const year = '19' + idNumber.slice(0, 2); // Assume 19 for the birth century
+      const month = idNumber.slice(2, 4);
+      const day = idNumber.slice(4, 6);
+
+      // Create a Date object to calculate age
+      const birthdate = new Date(`${year}-${month}-${day}`);
+      const today = new Date();
+      const age = Math.floor((today - birthdate) / (365.25 * 24 * 60 * 60 * 1000)); // Approximate age in years
+
+      // Display the result
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `
+        <p>Year: ${year}</p>
+        <p>Month: ${month}</p>
+        <p>Day: ${day}</p>
+        <p>Age: ${age} years</p>
+      `;
+    }
+  </script>
+</body>
+</html>
+
+
